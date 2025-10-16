@@ -1,0 +1,56 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.5.6'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+description = 'Demo project for Spring Boot'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	// 웹 애플리케이션 개발을 위한 핵심 Starter
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	
+	// 개발 중 자동 리로드용. 실제 배포에는 불필요하므로 개발 시에만 사용.
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	
+	// REST API 자동 생성 기능
+	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+	
+	// 데이터베이스 ORM (JPA) 기능 포함
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	
+	// MariaDB 데이터베이스 드라이버 (운영 DB 연결용)
+	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client:3.3.3'
+	
+	// Lombok (코드 간소화: getter, setter, 생성자 자동 생성)
+	compileOnly 'org.projectlombok:lombok:1.18.30'
+	annotationProcessor 'org.projectlombok:lombok:1.18.30'
+	
+	// JWT (JSON Web Token) 관련 라이브러리 — 보안/인증에 활용
+	// implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+	// implementation 'io.jsonwebtoken:jjwt-impl:0.11.5'
+	// implementation 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+	
+	// ✅ 테스트 관련 기본 의존성
+	// Spring Boot 테스트 프레임워크 (MockMvc, 테스트 자동 설정 등)
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	// JUnit 플랫폼 런처 (테스트 실행용)
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
