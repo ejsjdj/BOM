@@ -27,6 +27,7 @@ public class DrawingController {
     
     @GetMapping("/drawings")
     public Iterable<Drawing> getDrawing() {
+    		System.out.println("실행?");
     		return repository.findAll();
     }
     

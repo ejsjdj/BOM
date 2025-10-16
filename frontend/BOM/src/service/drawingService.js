@@ -1,8 +1,8 @@
-import httpRequester from "@/libs/httpRequester";
+import axios from "axios";
 
 // 자재 추가
-export const addDrawing = (drawingName) => {
-	return httpRequester.post("api/drawing/update", drawingName).catch(e => e.response);
+export const addDrawing = (drawing) => {
+	return axios.post("/api/drawing/update", { name: drawing }).catch(e => e.response);
 };
 
 // 자재 삭제
